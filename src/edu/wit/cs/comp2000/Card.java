@@ -16,16 +16,14 @@ public class Card {
 	 * @return list of holes punched on the card
 	 */
 	public List<Hole> getHoles() {
-		//TODO Implement this method
-		return null;
+		return holes;
 	}
 
 	/**
 	 * @return number of holes, punched or not, on the card
 	 */
 	public int getSize() {
-		//TODO Implement this method
-		return -1;
+		return size;
 	}
 
 	/**
@@ -36,7 +34,25 @@ public class Card {
 	 * @throws IllegalArgumentException if the text has unexpected characters
 	 */
 	public void punch(String textHoles) {
-		//TODO Implement this method
+		ArrayList<Hole> arr = new ArrayList<Hole>();
+		for(int i = 0; i<textHoles.length(); i++)
+		{
+			if(textHoles.charAt(i) == 'x')
+			{
+				arr.add(new Hole(true)); 
+			}
+			else if(textHoles.charAt(i) == ' ')
+			{
+				arr.add(new Hole(false));
+			}
+			else
+			{
+				throw new IllegalArgumentException();
+			}
+		}
+		
+		holes = arr;
+		size = textHoles.length();
 	}
 
 	// Test Card methods
@@ -50,7 +66,7 @@ public class Card {
 			System.err.println("Card doesn't have the correct number of holes.");
 			System.exit(1);
 		}
-
+		
 		if (!c.getHoles().get(0).isPunched()) {
 			System.err.println("Position 0 should be punched.");
 			System.exit(1);			

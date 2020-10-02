@@ -19,12 +19,11 @@ public class Loom {
 	}
 
 	public void setWeft(Color c) {
-		//TODO Implement this method
+		weft = c;
 	}
 
 	public Color getWeft() {
-		//TODO Implement this method
-		return null;
+		return weft;
 	}
 
 	/**
@@ -33,6 +32,20 @@ public class Loom {
 	 * @param card Card to run through the loom
 	 */
 	public void run(Card card) {
+		List<Color> tempTapestry = new ArrayList<Color>();
+		for(int i = 0; i<card.getSize(); i++) 
+		{
+			if(card.getHoles().get(i).isPunched())
+			{
+				tempTapestry.add(warp);
+			}
+			else
+			{
+				tempTapestry.add(weft);
+			}
+		}
+		
+		tapestry.add(tempTapestry);
 		//TODO Implement this method
 	}
 
@@ -42,8 +55,10 @@ public class Loom {
 	 * @return 
 	 */
 	public List<List<Color>> getTapestry() {
-		//TODO Implement this method
-		return null;
+		List<List<Color>> newTapestry = new ArrayList<List<Color>>();
+		newTapestry = tapestry;
+		tapestry = new ArrayList<List<Color>>();
+		return newTapestry;
 	}
 
 

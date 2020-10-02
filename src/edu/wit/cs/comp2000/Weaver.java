@@ -43,13 +43,36 @@ public class Weaver {
 	 */
 	public List<Card> buildCards(String patternFile) {
 
-		List<Card> cardDeck = new ArrayList<>();
+		List<Card> cardDeck = new ArrayList<Card>();
 
 		// TODO open patternFile and convert lines of file to cards
-
-		verifyDeck(cardDeck);
-
-		return cardDeck;
+			try 
+			{
+				Scanner scnr = new Scanner(new File(patternFile));
+				List<Card> t = new ArrayList<Card>();
+				List<String> line = new ArrayList<String>();
+				while(scnr.hasNextLine())
+				{
+					line.add(scnr.nextLine());
+		        }
+				
+				for(int i = 0; i<line.size(); i++)
+				{
+					t.add(new Card());
+					t.get(i).punch(line.get(i));
+					cardDeck.add(t.get(i));
+				}
+				
+				verifyDeck(cardDeck);
+				
+				return cardDeck;
+		   
+		    }
+			catch (FileNotFoundException e)
+			{
+				return null;
+			}
+			
 	}
 
 	/**
@@ -58,15 +81,15 @@ public class Weaver {
 	 * @param c pattern cards
 	 */
 	public void setCards(List<Card> c) {
-		//TODO implement this method
+		cardDeck = c;
+		cardIter = cardDeck.iterator();
 	}
 
 	/**
 	 * @return deck of cards that weaver is holding
 	 */
 	public List<Card> getCards() {
-		//TODO implement this method
-		return null;
+		return cardDeck;
 	}
 
 	/**
@@ -129,12 +152,12 @@ public class Weaver {
 		}
 
 		if ((t.get(0) == null) || (!t.get(0).get(0).equals(Color.white))) {
-			System.err.println("Wrong row was woven.");
+			System.err.println("Wrong row was woven1.");
 			System.exit(1);
 		}
 
 		if ((t.get(1) == null) || (!t.get(1).get(0).equals(Color.black))) {
-			System.err.println("Wrong row was woven.");
+			System.err.println("Wrong row was woven2.");
 			System.exit(1);
 		}
 
