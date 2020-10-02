@@ -49,7 +49,6 @@ public class Weaver {
 			try 
 			{
 				Scanner scnr = new Scanner(new File(patternFile));
-				List<Card> t = new ArrayList<Card>();
 				List<String> line = new ArrayList<String>();
 				while(scnr.hasNextLine())
 				{
@@ -58,9 +57,8 @@ public class Weaver {
 				
 				for(int i = 0; i<line.size(); i++)
 				{
-					t.add(new Card());
-					t.get(i).punch(line.get(i));
-					cardDeck.add(t.get(i));
+					cardDeck.add(new Card());
+					cardDeck.get(i).punch(line.get(i));
 				}
 				
 				verifyDeck(cardDeck);
